@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const shortid = require("shortid");
+
 const UrlSchema = new mongoose.Schema(
   {
     CreatedBy: {
@@ -6,7 +8,8 @@ const UrlSchema = new mongoose.Schema(
       ref: "User",
     },
     LongUrl: { type: String, required: true },
-    ShortUrl: { type: String, required: true },
+    ShortUrl: { type: String, required: true, default: shortid.generate },
+    Clicks: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
